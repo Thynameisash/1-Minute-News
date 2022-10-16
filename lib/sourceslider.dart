@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+import 'api/apiconst.dart';
+import 'constants/colors.dart';
+import 'newsscreen.dart';
+
+class SourceSlider extends StatefulWidget {
+  const SourceSlider({super.key});
+
+  @override
+  State<SourceSlider> createState() => _SourceSliderState();
+}
+
+class _SourceSliderState extends State<SourceSlider> {
+  String src = "";
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 170,
+      child: ListView.builder(
+        itemCount: Constants.sourcedict.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return SizedBox(
+            height: 150,
+            width: 150,
+            child: InkWell(
+              onTap: () {
+                setState(() {
+                  src = Constants.sourcedict[index]["id"].toString();
+                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        NewsScreen(category: "null", source: src),
+                  ),
+                );
+              },
+              child: Material(
+                color: ConstColors.primaryc,
+                child: Column(
+                  children: [
+                    Image.network(
+                      Constants.sourcedict[index]["pic"].toString(),
+                      height: 110,
+                      width: 110,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: FittedBox(
+                        child: Text(
+                          Constants.sourcedict[index]["name"].toString(),
+                          style: const TextStyle(
+                              fontSize: 22, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
