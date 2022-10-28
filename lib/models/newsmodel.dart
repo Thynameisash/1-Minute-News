@@ -95,12 +95,12 @@ class Article {
   factory Article.fromMap(Map<String, dynamic> json) => Article(
         source: Source.fromMap(json["source"]),
         author: json["author"].toString(),
-        title: json["title"],
-        description: json["description"],
+        title: json["title"].toString(),
+        description: json["description"].toString(),
         url: json["url"].toString(),
         urlToImage: json["urlToImage"].toString(),
         publishedAt: DateTime.parse(json["publishedAt"]),
-        content: json["content"],
+        content: json["content"].toString(),
       );
 
   Map<String, dynamic> toMap() => {
@@ -139,7 +139,7 @@ class Source {
 
   factory Source.fromMap(Map<String, dynamic> json) => Source(
         id: json["id"].toString(),
-        name: json["name"],
+        name: json["name"].toString(),
       );
 
   Map<String, dynamic> toMap() => {

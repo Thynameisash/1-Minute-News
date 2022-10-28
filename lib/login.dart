@@ -16,6 +16,8 @@ class _MyLoginState extends State<MyLogin> {
   TextEditingController pwdctr = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    emailctr.text = "chirag.bargoojar@gmail.com";
+    pwdctr.text = "ash123";
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(

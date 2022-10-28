@@ -31,6 +31,7 @@ class _NewsScreenState extends State<NewsScreen> {
 
     Uri url = Uri();
     if (widget.category != "null") {
+      log("widget.category ${widget.category}");
       url = Uri.parse(
           "https://newsapi.org/v2/top-headlines?country=in&category=${widget.category}&pageSize=50");
     } else if (widget.source != "null") {
@@ -41,7 +42,12 @@ class _NewsScreenState extends State<NewsScreen> {
           "https://newsapi.org/v2/everything?q=${widget.query}&pageSize=50");
     }
 
-    var response = await http.get(url, headers: head);
+    var response = await http.get(url, headers: head).then(
+      (value) {
+        log("API body ${value.body}");
+        return value;
+      },
+    );
     newsmodel = NewsModel.fromJson(response.body);
     log(newsmodel.articles.first.url);
     setState(() {

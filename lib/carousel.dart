@@ -15,20 +15,18 @@ class NewsSlider extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     CollectionReference users = FirebaseFirestore.instance.collection('users');
-    
-    
-    // addinfo(singlearticle) {
-      
-    //   return users
-    //       .add({
-    //         "news": singlearticle,
-    //       })
-    //       .then(
-    //         (value) => print("Info Added:\n${value}"),
-    //       )
-    //       .catchError(
-    //         (error) => print("Failed to add user: $error"),
-    //       );
+
+    addinfo(singlearticle) {
+      // return users
+      //     .add({
+      //       "news": singlearticle,
+      //     })
+      //     .then(
+      //       (value) => print("Info Added:\n${value}"),
+      //     )
+      //     .catchError(
+      //       (error) => print("Failed to add user: $error"),
+      //     );
     }
 
     log(newsmodel.articles.length.toString());
