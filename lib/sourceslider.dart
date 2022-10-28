@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'api/apiconst.dart';
@@ -5,7 +6,12 @@ import 'constants/colors.dart';
 import 'newsscreen.dart';
 
 class SourceSlider extends StatefulWidget {
-  const SourceSlider({super.key});
+  const SourceSlider({
+    super.key,
+    required this.currentUser,
+  });
+
+  final UserCredential currentUser;
 
   @override
   State<SourceSlider> createState() => _SourceSliderState();
@@ -40,7 +46,11 @@ class _SourceSliderState extends State<SourceSlider> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => NewsScreen(
-                          category: "null", source: src, query: "null"),
+                        category: "null",
+                        source: src,
+                        query: "null",
+                        currentUser: widget.currentUser,
+                      ),
                     ),
                   );
                 },

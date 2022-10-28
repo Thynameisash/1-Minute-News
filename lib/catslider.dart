@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/constants/colors.dart';
@@ -5,7 +6,12 @@ import 'api/apiconst.dart';
 import 'newsscreen.dart';
 
 class CategorySlider extends StatefulWidget {
-  const CategorySlider({super.key});
+  const CategorySlider({
+    super.key,
+    required this.currentUser,
+  });
+
+  final UserCredential currentUser;
 
   @override
   State<CategorySlider> createState() => _CategorySliderState();
@@ -34,16 +40,23 @@ class _CategorySliderState extends State<CategorySlider> {
               width: 150,
               child: InkWell(
                 onTap: () {
-                  setState(() {
-                    cat = Constants.catdict[index]["cat"]
-                        .toString()
-                        .toLowerCase();
-                  });
+                  setState(
+                    () {
+                      cat = Constants.catdict[index]["cat"]
+                          .toString()
+                          .toLowerCase();
+                    },
+                  );
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => NewsScreen(
-                            category: cat, source: "null", query: "null")),
+                      builder: (context) => NewsScreen(
+                        category: cat,
+                        source: "null",
+                        query: "null",
+                        currentUser: widget.currentUser,
+                      ),
+                    ),
                   );
                 },
                 child: Material(

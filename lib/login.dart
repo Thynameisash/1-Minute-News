@@ -16,8 +16,8 @@ class _MyLoginState extends State<MyLogin> {
   TextEditingController pwdctr = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    emailctr.text = "chirag.bargoojar@gmail.com";
-    pwdctr.text = "ash123";
+    emailctr.text = "chiragkumar6921@gmail.com";
+    pwdctr.text = "password";
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -94,7 +94,9 @@ class _MyLoginState extends State<MyLogin> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const MyHomeScreen(),
+                                  builder: (context) => MyHomeScreen(
+                                    currentUser: value,
+                                  ),
                                 ),
                               );
                             } else {

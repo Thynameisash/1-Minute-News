@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:newsapp/carousel.dart';
@@ -12,10 +13,12 @@ class NewsScreen extends StatefulWidget {
     required this.category,
     required this.source,
     required this.query,
+    required this.currentUser,
   });
   final String category;
   final String source;
   final String query;
+  final UserCredential currentUser;
   @override
   State<NewsScreen> createState() => _NewsScreenState();
 }
@@ -81,6 +84,7 @@ class _NewsScreenState extends State<NewsScreen> {
       ),
       body: NewsSlider(
         newsmodel: newsmodel,
+        currentUser: widget.currentUser,
       ),
     );
   }
