@@ -1,9 +1,9 @@
 import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
+import 'package:newsapp/constants/colors.dart';
 import 'package:newsapp/models/newsmodel.dart';
 
 class NewsSlider extends StatelessWidget {
@@ -14,6 +14,23 @@ class NewsSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    
+    
+    // addinfo(singlearticle) {
+      
+    //   return users
+    //       .add({
+    //         "news": singlearticle,
+    //       })
+    //       .then(
+    //         (value) => print("Info Added:\n${value}"),
+    //       )
+    //       .catchError(
+    //         (error) => print("Failed to add user: $error"),
+    //       );
+    }
+
     log(newsmodel.articles.length.toString());
     return ColoredBox(
       color: Colors.black,
@@ -30,7 +47,7 @@ class NewsSlider extends StatelessWidget {
           return singlearticle.urlToImage == "null"
               ? const Offstage()
               : Material(
-                  color: const Color(0xff1c2841),
+                  color: ConstColors.primaryc,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -48,14 +65,17 @@ class NewsSlider extends StatelessWidget {
                         ),
                       ),
                       Center(
-                        child: Text(
-                          singlearticle.title,
-                          style: GoogleFonts.ubuntu(
-                            fontStyle: FontStyle.italic,
-                            fontWeight: FontWeight.bold,
-                            textStyle: const TextStyle(
-                              fontSize: 22,
-                              color: Color.fromARGB(255, 255, 255, 255),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            singlearticle.title,
+                            style: GoogleFonts.ubuntu(
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.bold,
+                              textStyle: const TextStyle(
+                                fontSize: 22,
+                                color: Color.fromARGB(255, 255, 255, 255),
+                              ),
                             ),
                           ),
                         ),
@@ -74,17 +94,38 @@ class NewsSlider extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10, left: 20),
+                        padding: const EdgeInsets.only(top: 30, left: 10),
                         child: SizedBox(
-                          child: Text(
-                            "Source : ${singlearticle.source.name}",
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Source : ${singlearticle.source.name}",
+                                textAlign: TextAlign.left,
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                              Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () => {addinfo(singlearticle.url)},
+                                    child: const Text(
+                                      "Add to favs",
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 20)
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
+
                       // SizedBox(
                       //   child: Stack(
                       //     children: [Text(singlearticle.title)],

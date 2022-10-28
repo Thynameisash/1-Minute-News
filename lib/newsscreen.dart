@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:newsapp/carousel.dart';
+import 'package:newsapp/constants/colors.dart';
 import 'package:newsapp/models/newsmodel.dart';
 
 class NewsScreen extends StatefulWidget {
@@ -10,9 +11,11 @@ class NewsScreen extends StatefulWidget {
     super.key,
     required this.category,
     required this.source,
+    required this.query,
   });
   final String category;
   final String source;
+  final String query;
   @override
   State<NewsScreen> createState() => _NewsScreenState();
 }
@@ -27,12 +30,15 @@ class _NewsScreenState extends State<NewsScreen> {
     };
 
     Uri url = Uri();
-    if (widget.source == "null") {
+    if (widget.category != "null") {
       url = Uri.parse(
           "https://newsapi.org/v2/top-headlines?country=in&category=${widget.category}&pageSize=50");
-    } else {
+    } else if (widget.source != "null") {
       url = Uri.parse(
           "https://newsapi.org/v2/top-headlines?sources=${widget.source}&pageSize=50");
+    } else {
+      url = Uri.parse(
+          "https://newsapi.org/v2/everything?q=${widget.query}&pageSize=50");
     }
 
     var response = await http.get(url, headers: head);
@@ -53,11 +59,17 @@ class _NewsScreenState extends State<NewsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xff5072a7),
+        iconTheme: const IconThemeData(
+          color: ConstColors.primarytext, //change your color here
+        ),
+        backgroundColor: ConstColors.primaryc,
         title: const Padding(
           padding: EdgeInsets.only(right: 60),
           child: Center(
-            child: Text("News"),
+            child: Text(
+              "News",
+              style: TextStyle(color: ConstColors.primarytext),
+            ),
           ),
         ),
       ),

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "493499986327",
+    "project_id": "minute-news-3ba9d",
+    "storage_bucket": "minute-news-3ba9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493499986327:android:ade3b9cbfbabb9ccd214d2",
+        "android_client_info": {
+          "package_name": "com.example.newsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "493499986327-oc2eruvnt65kg2p5kc4js0om1e65blqc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU2ly3mksx7nJg70YUyWH7XuY3V9Nn7EY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "493499986327-oc2eruvnt65kg2p5kc4js0om1e65blqc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

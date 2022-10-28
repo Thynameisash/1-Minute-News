@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:newsapp/homescreen.dart';
+
+import 'newsscreen.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
@@ -8,6 +12,8 @@ class MyLogin extends StatefulWidget {
 }
 
 class _MyLoginState extends State<MyLogin> {
+  TextEditingController emailctr = TextEditingController();
+  TextEditingController pwdctr = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,6 +39,7 @@ class _MyLoginState extends State<MyLogin> {
                   top: MediaQuery.of(context).size.height * 0.5),
               child: Column(children: [
                 TextField(
+                  controller: emailctr,
                   decoration: InputDecoration(
                     fillColor: Colors.grey.shade100,
                     filled: true,
@@ -46,6 +53,7 @@ class _MyLoginState extends State<MyLogin> {
                   height: 30,
                 ),
                 TextField(
+                  controller: pwdctr,
                   obscureText: true,
                   decoration: InputDecoration(
                     fillColor: Colors.grey.shade100,
@@ -75,7 +83,38 @@ class _MyLoginState extends State<MyLogin> {
                       backgroundColor: const Color(0xff4c505b),
                       child: IconButton(
                         color: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                                  email: emailctr.text, password: pwdctr.text)
+                              .then((value) {
+                            if (value.user!.emailVerified) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const MyHomeScreen(),
+                                ),
+                              );
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title:
+                                      const Text("ABEY LAWDE EMAIL VERIFY KAR"),
+                                  actions: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        value.user!.sendEmailVerification();
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("FIRSE B HEJO LIONK"),
+                                    )
+                                  ],
+                                ),
+                              );
+                            }
+                          });
+                        },
                         icon: const Icon(Icons.arrow_forward),
                       ),
                     ),

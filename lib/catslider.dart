@@ -27,13 +27,14 @@ class _CategorySliderState extends State<CategorySlider> {
             child: InkWell(
               onTap: () {
                 setState(() {
-                  cat = Constants.catdict[index]["cat"].toString();
+                  cat =
+                      Constants.catdict[index]["cat"].toString().toLowerCase();
                 });
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>
-                          NewsScreen(category: cat, source: "null")),
+                      builder: (context) => NewsScreen(
+                          category: cat, source: "null", query: "null")),
                 );
               },
               child: Material(
@@ -48,8 +49,8 @@ class _CategorySliderState extends State<CategorySlider> {
                     FittedBox(
                       child: Text(
                         Constants.catdict[index]["cat"].toString(),
-                        style:
-                            const TextStyle(fontSize: 22, color: Colors.white),
+                        style: const TextStyle(
+                            fontSize: 22, color: ConstColors.primarytext),
                       ),
                     ),
                   ],

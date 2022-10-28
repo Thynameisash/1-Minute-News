@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:newsapp/login.dart';
 
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
@@ -8,6 +11,26 @@ class MyRegister extends StatefulWidget {
 }
 
 class _MyRegisterState extends State<MyRegister> {
+  TextEditingController namectr = TextEditingController();
+  TextEditingController emailctr = TextEditingController();
+  TextEditingController pwdctr = TextEditingController();
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+  addinfo() {
+    return users
+        .add({
+          "name": namectr.text,
+          "email": emailctr.text,
+          "pwd": pwdctr.text,
+          "userfav": [],
+        })
+        .then(
+          (value) => print("Info Added:\n${value}"),
+        )
+        .catchError(
+          (error) => print("Failed to add user: $error"),
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,6 +60,7 @@ class _MyRegisterState extends State<MyRegister> {
                   top: MediaQuery.of(context).size.height * 0.27),
               child: Column(children: [
                 TextField(
+                  controller: namectr,
                   decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -54,6 +78,7 @@ class _MyRegisterState extends State<MyRegister> {
                   height: 30,
                 ),
                 TextField(
+                  controller: emailctr,
                   decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -71,6 +96,7 @@ class _MyRegisterState extends State<MyRegister> {
                   height: 30,
                 ),
                 TextField(
+                  controller: pwdctr,
                   obscureText: true,
                   decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
@@ -104,7 +130,25 @@ class _MyRegisterState extends State<MyRegister> {
                         backgroundColor: const Color(0xff4c505b),
                         child: IconButton(
                           color: Colors.white,
-                          onPressed: () {},
+                          onPressed: () {
+                            addinfo();
+                            FirebaseAuth.instance
+                                .createUserWithEmailAndPassword(
+                              email: emailctr.text.toString(),
+                              password: pwdctr.text.toString(),
+                            )
+                                .then(
+                              (value) {
+                                value.user!.sendEmailVerification();
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const MyLogin(),
+                                  ),
+                                );
+                              },
+                            );
+                          },
                           icon: const Icon(Icons.arrow_forward),
                         ),
                       ),

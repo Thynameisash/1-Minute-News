@@ -2,32 +2,32 @@ class Constants {
   static final catdict = [
     {
       "thumb": "https://img.icons8.com/fluent/96/000000/news.png",
-      "cat": "everything",
+      "cat": "Everything",
     },
     {
       "thumb": "https://img.icons8.com/fluent/96/000000/hard-working.png",
-      "cat": "business",
+      "cat": "Business",
     },
     {
       "thumb": "https://img.icons8.com/fluent/96/000000/movie-projector.png",
-      "cat": "entertainment",
+      "cat": "Entertainment",
     },
     {
       "thumb": "https://img.icons8.com/fluent/96/000000/stethoscope.png",
-      "cat": "health",
+      "cat": "Health",
     },
     {
       "thumb": "https://img.icons8.com/fluent/96/000000/microscope.png",
-      "cat": "science",
+      "cat": "Science",
     },
     {
       "thumb": "https://img.icons8.com/fluent/96/000000/trophy.png",
-      "cat": "sports",
+      "cat": "Sports",
     },
     {
       "thumb":
           "https://img.icons8.com/fluent/96/000000/artificial-intelligence.png",
-      "cat": "technology",
+      "cat": "Technology",
     },
   ];
 

@@ -31,8 +31,8 @@ class _SourceSliderState extends State<SourceSlider> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        NewsScreen(category: "null", source: src),
+                    builder: (context) => NewsScreen(
+                        category: "null", source: src, query: "null"),
                   ),
                 );
               },
@@ -51,7 +51,7 @@ class _SourceSliderState extends State<SourceSlider> {
                         child: Text(
                           Constants.sourcedict[index]["name"].toString(),
                           style: const TextStyle(
-                              fontSize: 22, color: Colors.white),
+                              fontSize: 22, color: ConstColors.primarytext),
                         ),
                       ),
                     ),
