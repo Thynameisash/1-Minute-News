@@ -59,18 +59,29 @@ class _NewsSliderState extends State<NewsSlider> {
         Map<String, dynamic> userData =
             value.docs[0].data() as Map<String, dynamic>;
         List<dynamic> data = userData["userfav"];
+        List<dynamic> data2 = [...data];
 
-        if (data.contains(singlearticle.title.toString())) {
-          data.remove(singlearticle.title.toString());
-        } else {
-          data.add(singlearticle.title.toString());
+        if (data2.isEmpty) {
+          data.add(
+            {
+              "title": singlearticle.title.toString(),
+              "newsurl": singlearticle.url.toString(),
+            },
+          );
         }
-
-        // log("userData[userfav] ${userData["userfav"]} ${data.length}");
-
-        // for (var val in userData["userfav"]) {
-        //   print(val);
-        // }
+        for (var val in data2) {
+          if (val["title"] == singlearticle.title.toString()) {
+            data.removeWhere((element) =>
+                element["title"] == singlearticle.title.toString());
+          } else {
+            data.add(
+              {
+                "title": singlearticle.title.toString(),
+                "newsurl": singlearticle.url.toString(),
+              },
+            );
+          }
+        }
 
         log("Total favourite ${data.length}");
 
@@ -83,9 +94,9 @@ class _NewsSliderState extends State<NewsSlider> {
     );
   }
 
-  bool isFavourite(String articleUrl) {
+  bool isFavourite(String articletitle) {
     for (var val in userFullData["userfav"]) {
-      if (val == articleUrl) {
+      if (val["title"] == articletitle) {
         return true;
       }
     }
