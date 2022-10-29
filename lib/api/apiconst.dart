@@ -2,7 +2,7 @@ class Constants {
   static final catdict = [
     {
       "thumb": "https://img.icons8.com/fluent/96/000000/news.png",
-      "cat": "Everything",
+      "cat": "General",
     },
     {
       "thumb": "https://img.icons8.com/fluent/96/000000/hard-working.png",
@@ -42,7 +42,7 @@ class Constants {
       "id": "cnn",
       "name": "CNN",
       "pic":
-          "https://bankimooncentre.org/wp-content/uploads/2020/06/cnn-logo-square.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/CNN_International_logo.svg/1200px-CNN_International_logo.svg.png",
     },
     {
       "id": "fox-news",

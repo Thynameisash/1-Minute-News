@@ -7,7 +7,12 @@ import 'package:newsapp/newsscreen.dart';
 import 'package:newsapp/sourceslider.dart';
 
 class MyHomeScreen extends StatefulWidget {
-  const MyHomeScreen({super.key});
+  const MyHomeScreen({
+    super.key,
+    required this.currentUser,
+  });
+
+  final UserCredential? currentUser;
 
   @override
   State<MyHomeScreen> createState() => _MyHomeScreenState();
@@ -63,11 +68,13 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const NewsScreen(
-                          category: "general",
-                          source: "null",
-                          query: "null",
-                        )),
+                  builder: (context) => NewsScreen(
+                    category: "general",
+                    source: "null",
+                    query: "null",
+                    currentUser: widget.currentUser!,
+                  ),
+                ),
               );
             },
             child: Row(
@@ -133,6 +140,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                                   category: "null",
                                   source: "null",
                                   query: que.toLowerCase(),
+                                  currentUser: widget.currentUser!,
                                 ),
                               ),
                             );
@@ -141,7 +149,9 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                       ),
                     ),
                   ),
-                  const CategorySlider(),
+                  CategorySlider(
+                    currentUser: widget.currentUser!,
+                  ),
                   const Padding(
                     padding: EdgeInsets.only(top: 50),
                     child: Text(
@@ -152,9 +162,11 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                           color: Color.fromARGB(255, 71, 228, 118)),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 30),
-                    child: SourceSlider(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30),
+                    child: SourceSlider(
+                      currentUser: widget.currentUser!,
+                    ),
                   ),
                 ],
               ),

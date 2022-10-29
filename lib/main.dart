@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/homescreen.dart';
@@ -17,7 +18,7 @@ void main() async {
       routes: {
         'login': (context) => const MyLogin(),
         'register': (context) => const MyRegister(),
-        'homescreen': (context) => const MyHomeScreen(),
+        'homescreen': (context) => const MyHomeScreen(currentUser: null),
       },
     ),
   );
