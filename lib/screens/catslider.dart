@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/constants/colors.dart';
-import 'api/apiconst.dart';
+import '../api/apiconst.dart';
 import 'newsscreen.dart';
 
 class CategorySlider extends StatefulWidget {

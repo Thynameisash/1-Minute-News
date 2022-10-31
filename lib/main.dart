@@ -1,18 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:newsapp/homescreen.dart';
-import 'firebase_options.dart';
-import 'login.dart';
-import 'register.dart';
+import 'package:newsapp/screens/homescreen.dart';
+import 'screens/firebase_options.dart';
+import 'screens/login.dart';
+import 'screens/register.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MaterialApp(
-      // theme: ThemeData(
-      //     scaffoldBackgroundColor: Color.fromARGB(255, 123, 120, 120),),
       debugShowCheckedModeBanner: false,
       initialRoute: 'login',
       routes: {

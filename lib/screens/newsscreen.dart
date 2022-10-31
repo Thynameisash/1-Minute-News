@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:newsapp/carousel.dart';
+import 'package:newsapp/screens/carousel.dart';
 import 'package:newsapp/constants/colors.dart';
 import 'package:newsapp/models/newsmodel.dart';
 

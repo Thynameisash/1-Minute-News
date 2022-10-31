@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:newsapp/homescreen.dart';
+import 'package:newsapp/screens/homescreen.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
@@ -14,6 +14,8 @@ class _MyLoginState extends State<MyLogin> {
   TextEditingController pwdctr = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    emailctr.text = "chiragkumar6921@gmail.com";
+    pwdctr.text = "password";
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(

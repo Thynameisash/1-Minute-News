@@ -14,7 +14,6 @@ class NewsModel {
   final String status;
   final int totalResults;
   final List<Article> articles;
-
   NewsModel copyWith({
     String? status,
     int? totalResults,

@@ -1,10 +1,12 @@
+import 'dart:ffi';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:newsapp/catslider.dart';
+import 'package:newsapp/screens/catslider.dart';
 import 'package:newsapp/constants/colors.dart';
-import 'package:newsapp/login.dart';
-import 'package:newsapp/newsscreen.dart';
-import 'package:newsapp/sourceslider.dart';
+import 'package:newsapp/screens/login.dart';
+import 'package:newsapp/screens/newsscreen.dart';
+import 'package:newsapp/screens/sourceslider.dart';
 
 class MyHomeScreen extends StatefulWidget {
   const MyHomeScreen({
@@ -149,11 +151,21 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                       ),
                     ),
                   ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 30),
+                    child: Text(
+                      "Categories",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 25,
+                          color: Color.fromARGB(255, 71, 228, 118)),
+                    ),
+                  ),
                   CategorySlider(
                     currentUser: widget.currentUser!,
                   ),
                   const Padding(
-                    padding: EdgeInsets.only(top: 50),
+                    padding: EdgeInsets.only(top: 30),
                     child: Text(
                       "Sources",
                       style: TextStyle(
@@ -168,12 +180,66 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                       currentUser: widget.currentUser!,
                     ),
                   ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 30),
+                    child: Text(
+                      "Your Favourites",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 25,
+                          color: Color.fromARGB(255, 71, 228, 118)),
+                    ),
+                  ),
+                  FavouriteListView(),
                 ],
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class FavouriteListView extends StatelessWidget {
+  const FavouriteListView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    TextStyle headingStyle = const TextStyle(
+      color: Colors.white,
+    );
+    TextStyle descriptionStyle = const TextStyle(color: Colors.white);
+    return Column(
+      children: [
+        for (int i = 0; i < 10; i++)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Material(
+              color: ConstColors.primaryc,
+              borderRadius: BorderRadius.circular(10),
+              elevation: 10,
+              child: ListTile(
+                title: Text(
+                  "My Heading",
+                  style: headingStyle,
+                ),
+                subtitle: Text(
+                  "My Description",
+                  style: descriptionStyle,
+                ),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: Colors.white,
+                ),
+                leading: const Icon(
+                  Icons.sync_rounded,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }

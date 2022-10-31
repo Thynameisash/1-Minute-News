@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'api/apiconst.dart';
-import 'constants/colors.dart';
+import '../api/apiconst.dart';
+import '../constants/colors.dart';
 import 'newsscreen.dart';
 
 class SourceSlider extends StatefulWidget {
